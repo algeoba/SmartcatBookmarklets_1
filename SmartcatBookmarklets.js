@@ -10,7 +10,12 @@ javascript: (function () {
 	let currentSegment = document.activeElement;
 	let selectionString = window.getSelection().toString();
 	let selectionArray = selectionString.split(' ');
-	let noCapitalization = ['a', 'about', 'above', 'across', 'after', 'against', 'along', 'among', 'and', 'around', 'as', 'at', 'before', 'beside', 'besides', 'between', 'beyond', 'but', 'by', 'despite', 'down', 'during', 'except', 'excepting', 'excluding', 'for', 'from', 'in', 'including', 'inside', 'into', 'like', 'near', 'nearer', 'nearest', 'of', 'off', 'on', 'or', 'onto', 'out', 'outside', 'over', 'per', 'regarding', 'respecting', 'short', 'since', 'than', 'the', 'through', 'throughout', 'till', 'to', 'toward', 'towards', 'under', 'underneath', 'unlike', 'until', 'unto', 'up', 'upon', 'v.', 'versus', 'via', 'vs.', 'with', 'within', 'without'];
+	let noCapitalization = ['a', 'about', 'above', 'across', 'after', 'against', 'along', 'among', 'and', 'around', 'as', 'at', 'before', 
+				'beside', 'besides', 'between', 'beyond', 'but', 'by', 'despite', 'down', 'during', 'except', 'excepting', 'excluding', 
+				'for', 'from', 'in', 'including', 'inside', 'into', 'like', 'near', 'nearer', 'nearest', 'of', 'off', 'on', 'or', 'onto', 
+				'out', 'outside', 'over', 'per', 'regarding', 'respecting', 'short', 'since', 'than', 'the', 'through', 'throughout', 
+				'till', 'to', 'toward', 'towards', 'under', 'underneath', 'unlike', 'until', 'unto', 'up', 'upon', 'v.', 'versus', 'via', 
+				'vs.', 'with', 'within', 'without'];
 	let selectionRemade = selectionArray.map(item => (noCapitalization.includes(item) == true) ? item = item : item = item[0].toUpperCase() + item.slice(1)).join(' ');
 	let output = currentSegment.innerText.replace(selectionString, selectionRemade);
 	currentSegment.innerText = output;

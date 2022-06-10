@@ -34,6 +34,7 @@ If I edit it manually, I need to (1) move the adverbial, (2) capitalize the firs
 
 Or, I just highlight the adverbial and click this bookmarklet.
 
+javascript: (function () { let currentSegment = document.activeElement; let currentSegmentText = currentSegment.innerText; let selectionString = ' ' + window.getSelection().toString(); let output = selectionString.substr(1, 1).toUpperCase() + selectionString.slice(2) + ', ' + currentSegmentText.substr(0, 1).toLowerCase() + currentSegmentText.slice(1).replace(selectionString, ''); currentSegment.innerText = output; })()
 
 # Paste Multiple Segments
 
@@ -41,16 +42,17 @@ If you need to paste multiple paragraphs or table cells from a reference materia
 
 If you apply filtering to your Smartcat document, the data will be pasted into the filtered segments.
 
+javascript: (function () { navigator.clipboard.readText().then(clipboardText => { clipboardArray = clipboardText.split(/[\r\n]+/g); for (i = 0; i < clipboardArray.length; i++) { statement = 'document.activeElement.closest(&quot;tbody&quot;)' + '.nextElementSibling'.repeat(i) + '.getElementsByClassName(&quot;l-content-editor__view l-content-editor__view_editor&quot;)[1].innerText=clipboardArray[i]'; eval(statement); } }) })()
+
+
 # 12 345,67 to 12,345.67
 
 Combination of MT pre-translation and MT engines can lead to erroneous number formats (or erroneous numbers in fuzzy matches), so, you need to copy source to target and then modify the numbers in line with standard format. If so, highlight the number of 12 345,67 format and click this bookmarklet to bring the number to 12,345.67 format.
-# 01.01.2001 to 1 January 2001
 
-and 
+javascript: (function () { let currentSegment = document.activeElement; let currentSegmentText = currentSegment.innerText; let selectionString = window.getSelection().toString(); let pattern = /\s/g; let result = selectionString.replace(',', '.').replace(pattern, ','); let output = currentSegmentText.replace(selectionString, result); currentSegment.innerText = output; })()
 
 # 01.01.2001 to January 1, 2001
 
-Sometimes, MT does not pick up dates and I use these bookmarklets to convert the dates from 01.01.2001 format to 1 January 2001 or January 1, 2001 format (select the date and then click the appropriate bookmarklet).
+Sometimes, MT does not pick up dates and I use these bookmarklets to convert the dates from 01.01.2001 format to January 1, 2001 format (select the date and then click the bookmarklet).
 
-
-
+javascript: (function () { let currentSegment = document.activeElement; let currentSegmentText = currentSegment.innerText; let selectionString = window.getSelection().toString(); let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']; let selectionArray = selectionString.split('.'); let day; (selectionArray[0].split(0, 1) == 0) ? day = selectionArray[0].substr(1, 1) : day = selectionArray[0]; let result = months[parseInt(selectionArray[1]) - 1] + ' ' + day + ', ' + selectionArray[2]; let output = currentSegmentText.replace(selectionString, result); currentSegment.innerText = output; })()

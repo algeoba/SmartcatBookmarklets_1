@@ -87,7 +87,7 @@ javascript: (function () {
 //single line
 javascript: (function () { let currentSegment = document.activeElement; let currentSegmentText = currentSegment.innerText; let selectionString = window.getSelection().toString(); let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']; let selectionArray = selectionString.split('.'); let day; (selectionArray[0].split(0, 1) == 0) ? day = selectionArray[0].substr(1, 1) : day = selectionArray[0]; let result = day + ' ' + months[parseInt(selectionArray[1]) - 1] + ' ' + selectionArray[2]; let output = currentSegmentText.replace(selectionString, result); currentSegment.innerText = output; })()
 
-//01.01.2001 to January 1, 2001
+//01.01.2001 to January 1, 2001 
 
 //pretty print
 javascript: (function () {
